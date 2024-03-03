@@ -2,15 +2,24 @@ import time
 import MetaTrader5 as mt5
 
 class ConnectMt5:
+    balance = 0
+
     def __init__(self):
         self.symbol = "EURUSD"
 
         if not mt5.initialize():
             print("initialize() failed, error code =",mt5.last_error())
             quit()
+        else:
+            account_info = mt5.account_info()
+            # Comprobar si se obtuvo la información de la cuenta correctamente
+            if account_info:
+                self.balance = account_info.balance
         
-        
-    def run(self, type):
+    def get_balance(self):
+        return self.balance 
+    
+    def run(self, Type='', size=0.01):
         # Extract filling_mode
         # filling_type = mt5.symbol_info(self.symbol).filling_mode
         # print('filling_type', filling_type)
@@ -31,25 +40,41 @@ class ConnectMt5:
                 mt5.shutdown()
                 quit()
         
+    
         lot = 0.01
         point = mt5.symbol_info(self.symbol).point
         price = mt5.symbol_info_tick(self.symbol).ask
         deviation = 20
 
-        request = {
-            "action": mt5.TRADE_ACTION_DEAL,
-            "symbol": self.symbol,
-            
-            "volume": 0.01,
-            "type": mt5.ORDER_TYPE_BUY,
-            "price": price,
-            
-            "deviation": deviation,
-            "magic": 234000,
-            "comment": "python script open",
-            "type_time": mt5.ORDER_TIME_GTC,
-            "type_filling": mt5.ORDER_FILLING_IOC,
-        }
+        if Type == "buy":
+            request = {
+                "action": mt5.TRADE_ACTION_DEAL,
+                "symbol": self.symbol,
+                "volume": size,
+                "type": mt5.ORDER_TYPE_BUY,
+                "price": price,
+                
+                "deviation": deviation,
+                "magic": 234000,
+                "comment": "python script open",
+                "type_time": mt5.ORDER_TIME_GTC,
+                "type_filling": mt5.ORDER_FILLING_IOC,
+            }
+        elif Type == "sell":
+            request = {
+                "action": mt5.TRADE_ACTION_DEAL,
+                "symbol": self.symbol,
+                
+                "volume": size,
+                "type": mt5.ORDER_TYPE_SELL,
+                "price": price,
+                
+                "deviation": deviation,
+                "magic": 234000,
+                "comment": "python script open",
+                "type_time": mt5.ORDER_TIME_GTC,
+                "type_filling": mt5.ORDER_FILLING_IOC,
+            }
 
         
         # send a trading request
