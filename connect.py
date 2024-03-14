@@ -1,4 +1,3 @@
-import time
 import MetaTrader5 as mt5
 
 class ConnectMt5:
