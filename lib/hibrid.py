@@ -35,7 +35,7 @@ def feature_engineering(data, SPY, predictions=np.array([None]))->pd.core.frame.
         data.drop("Close_y",1,  inplace=True)
         data.dropna(0, inplace=True)
     #else:
-    print("No model yet")
+    # print("No model yet")
     data = features(data, SPY)
     return data
 
@@ -197,32 +197,20 @@ def plotting(y_val, y_test, pred_test, mae, WINDOW, PREDICTION_SCOPE):
     _days = PREDICTION_SCOPE+1
     
 
-    print(f"For used windowed data: {WINDOW}")
-    print(f"Prediction scope for date {_date} / {_days} days")
-    print(f"The predicted price is {str(_predictprice)}$")
-    print(f"With a spread of MAE is {round(mae,2)}")
-    print()
+    # print(f"For used windowed data: {WINDOW}")
+    # print(f"Prediction scope for date {_date} / {_days} days")
+    # print(f"The predicted price is {str(_predictprice)}$")
+    # print(f"With a spread of MAE is {round(mae,2)}")
+    # print()
 
-    plt.figure(figsize=(16, 8))
+    # plt.figure(figsize=(16, 8))
 
-    plt.plot(list(range(test_time_init, test_time_end)),ploting_test, marker="$m$", color="orange")
-    # plt.plot(list(range(pred_time_init, pred_time_end)),ploting_pred,marker="$m$", color="red")
-    # plt.plot(y_val, marker="$m$")
+    # plt.plot(list(range(test_time_init, test_time_end)),ploting_test, marker="$m$", color="orange")
+    # plt.show()
 
-    # plt.plot(upper_band, color="grey", alpha=.3)
-    # plt.plot(lower_band, color="grey", alpha=.3)
-
-    # plt.fill_between(list(range(0, time+1)),upper_band, lower_band, color="grey", alpha=.1)
-
-    # plt.xticks(list(range(0-1, time)), x_ticks, rotation=45)
-    # plt.text(time-0.5, ploting_pred[-1]+2, str(round(ploting_pred[-1][0],2))+"$", size=11, color='red')
-    # plt.title(f"Target price for date {x_ticks[-1]} / {PREDICTION_SCOPE+1} days, with used past data of {WINDOW} days and a MAE of {round(mae,2)}", size=15)
-    # plt.legend(["Testing Set (input for Prediction)", "Prediction", "Validation"])
-    plt.show()
-
-    print()
-    print("-----------------------------------------------------------------------------")
-    print()
+    # print()
+    # print("-----------------------------------------------------------------------------")
+    # print()
 
 
     return _predictprice, _date, _days
@@ -324,12 +312,12 @@ def xgb_model(X_train, y_train, X_val, y_val, plotting=False):
     return  mae, xgb_model
 
 
-stock_prices = yf.download("AAPL")
-SPY = yf.download("SPY", start="2001-11-30")["Close"]
+stock_prices = yf.download("BTC-USD")
+SPY = yf.download("SPY")["Close"]
 
 
 
-stock_prices = yf.download("AAPL", start="2001-11-30")
+stock_prices = yf.download("BTC-USD")
 
 PERCENTAGE = .995
 WINDOW = 2
@@ -342,11 +330,6 @@ stock_prices.tail(20)
 train, test = train_test_split(stock_prices, WINDOW)
 train_set, validation_set = train_validation_split(train, PERCENTAGE)
 
-print(f"train_set shape: {train_set.shape}")
-print(f"validation_set shape: {validation_set.shape}")
-print(f"test shape: {test.shape}")
-
-
 X_train, y_train, X_val, y_val = windowing(train_set, validation_set, WINDOW, PREDICTION_SCOPE)
 
 #Convert the returned list into arrays
@@ -355,11 +338,6 @@ y_train = np.array(y_train)
 X_val = np.array(X_val)
 y_val = np.array(y_val)
 
-print(f"X_train shape: {X_train.shape}")
-print(f"y_train shape: {y_train.shape}")
-print(f"X_val shape: {X_val.shape}")
-print(f"y_val shape: {y_val.shape}")
-
 
 
 #Reshaping the Data
@@ -367,8 +345,8 @@ print(f"y_val shape: {y_val.shape}")
 X_train = X_train.reshape(X_train.shape[0], -1)
 X_val = X_val.reshape(X_val.shape[0], -1)
 
-print(f"X_train shape: {X_train.shape}")
-print(f"X_val shape: {X_val.shape}")
+# print(f"X_train shape: {X_train.shape}")
+# print(f"X_val shape: {X_val.shape}")
 
 
 mae, xgb_model = xgb_model(X_train, y_train, X_val, y_val, plotting=True)
@@ -377,25 +355,44 @@ plt.figure(figsize=(16, 16))
 fig, ax = plt.subplots(1, 1, figsize=(26, 17))
 
 plot_importance(xgb_model,ax=ax,height=0.5, max_num_features=10)
-ax.set_title("Feature Importance", size=30)
-plt.xticks(size=30)
-plt.yticks(size=30)
-plt.ylabel("Feature", size=30)
-plt.xlabel("F-Score", size=30)
-plt.show()
+# ax.set_title("Feature Importance", size=30)
+# plt.xticks(size=30)
+# plt.yticks(size=30)
+# plt.ylabel("Feature", size=30)
+# plt.xlabel("F-Score", size=30)
+# plt.show()
 
 
 X_test = np.array(test.iloc[:, :-1])
 y_test = np.array(test.iloc[:, -1])
 X_test = X_test.reshape(1, -1)
 
-print(f"X_test shape: {X_test.shape}")
+# print(f"X_test shape: {X_test.shape}")
 
 #Apply the xgboost model on the Test Data
 pred_test_xgb = xgb_model.predict(X_test)
 plotting(y_val, y_test, pred_test_xgb, mae, WINDOW, PREDICTION_SCOPE)
 
 
-def predictPrice ():
+import json
+
+# Otras importaciones y funciones anteriores permanecen igual
+
+def predictPrice():
     return plotting(y_val, y_test, pred_test_xgb, mae, WINDOW, PREDICTION_SCOPE)
-     
+
+predicted_price, prediction_date, prediction_days = predictPrice()
+
+# Convertir a tipos de datos compatibles con JSON
+prediction_data = {
+    "predicted_price": float(predicted_price),
+    "prediction_date": prediction_date.strftime('%Y-%m-%d'),
+    "prediction_days": int(prediction_days),
+    "token": "BTC/USDT"
+}
+
+# Guardar los datos de la predicción en un archivo JSON
+with open('../data/prediction.json', 'w') as json_file:
+    json.dump(prediction_data, json_file, indent=4)
+
+print(prediction_data)
