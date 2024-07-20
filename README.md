@@ -1,14 +1,13 @@
-# Proyecto de Bot de Trading
+# Constellation Trading
 
-Este proyecto utiliza un bot de Telegram para realizar operaciones de trading.
+This is a nice project ia that can predicted the price of any token or financial instrument.
 
-## Requisitos
+## Requirements
+Before running the project, make sure you have the necessary dependencies installed. You can do this using the `requirements.txt` file.
 
-Antes de ejecutar el proyecto, asegúrate de tener instaladas las dependencias necesarias. Puedes hacerlo utilizando el archivo `requirements.txt`.
 
-## Instalación
-
-Para instalar las dependencias necesarias, ejecuta el siguiente comando:
+## Installation
+To install the necessary dependencies, run the following command:
 
 ```sh
 pip install -r requirements.txt
