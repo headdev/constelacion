@@ -399,9 +399,10 @@ def main():
         }
         
         print("Guardando datos de predicción...")
-        with open('../data/prediction-BTC-USD.json', 'w') as json_file:
+        filename = f'../data/prediction-{symbol}.json'
+        with open(filename, 'w') as json_file:
             json.dump(prediction_data, json_file, indent=4)
-        print("Datos de predicción guardados exitosamente.")
+        print(f"Datos de predicción guardados exitosamente en {filename}")
         
         print(json.dumps(prediction_data, indent=4))
         
