@@ -1,0 +1,41 @@
+{
+    "current_price": 557.6583862304688,
+    "predicted_price": 555.489990234375,
+    "prediction_date": "2024-07-26",
+    "prediction_days": 1,
+    "mae": 12.754097678444602,
+    "trade_direction": "SHORT \ud83d\udcc9",
+    "entry_price": 605.191162109375,
+    "stop_loss": 623.3468969726563,
+    "target_price_1": 555.489990234375,
+    "target_price_2": 554.8275756835938,
+    "highest_price_4d": 605.191162109375,
+    "lowest_price_4d": 554.8275756835938,
+    "token": "BNB-USD",
+    "highest_volume_prices": [
+        {
+            "date": "2024-07-19 00:00",
+            "price": 593.7021484375,
+            "volume": 2052978808
+        },
+        {
+            "date": "2024-07-22 00:00",
+            "price": 587.9177856445312,
+            "volume": 1985538902
+        },
+        {
+            "date": "2024-07-23 00:00",
+            "price": 582.0995483398438,
+            "volume": 1839296067
+        },
+        {
+            "date": "2024-07-21 00:00",
+            "price": 601.8511962890625,
+            "volume": 1815088659
+        }
+    ],
+    "price_1d_ago": null,
+    "price_2d_ago": 593.1072998046875,
+    "price_3d_ago": 605.191162109375,
+    "price_4d_ago": 603.6642456054688
+}

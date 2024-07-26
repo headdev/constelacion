@@ -1,0 +1,41 @@
+{
+    "current_price": 215.99000549316406,
+    "predicted_price": 210.25999450683594,
+    "prediction_date": "2024-07-25",
+    "prediction_days": 1,
+    "mae": 11.59732723236084,
+    "trade_direction": "SHORT \ud83d\udcc9",
+    "entry_price": 257.1400146484375,
+    "stop_loss": 264.8542150878906,
+    "target_price_1": 210.25999450683594,
+    "target_price_2": 214.7100067138672,
+    "highest_price_4d": 257.1400146484375,
+    "lowest_price_4d": 214.7100067138672,
+    "token": "TSLA",
+    "highest_volume_prices": [
+        {
+            "date": "2024-07-24 00:00",
+            "price": 215.99000549316406,
+            "volume": 167234100
+        },
+        {
+            "date": "2024-07-23 00:00",
+            "price": 246.3800048828125,
+            "volume": 111928200
+        },
+        {
+            "date": "2024-07-18 00:00",
+            "price": 249.22999572753906,
+            "volume": 110869000
+        },
+        {
+            "date": "2024-07-22 00:00",
+            "price": 251.50999450683594,
+            "volume": 101225400
+        }
+    ],
+    "price_1d_ago": 225.99000549316406,
+    "price_2d_ago": 255.75999450683594,
+    "price_3d_ago": 253.2100067138672,
+    "price_4d_ago": null
+}

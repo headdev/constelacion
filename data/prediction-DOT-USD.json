@@ -1,0 +1,41 @@
+{
+    "current_price": 5.642362594604492,
+    "predicted_price": 5.78000020980835,
+    "prediction_date": "2024-07-26",
+    "prediction_days": 1,
+    "mae": 0.1843705972035726,
+    "trade_direction": "LONG \ud83d\udcc8",
+    "entry_price": 5.603435516357422,
+    "stop_loss": 5.435332450866699,
+    "target_price_1": 5.78000020980835,
+    "target_price_2": 6.472462177276611,
+    "highest_price_4d": 6.472462177276611,
+    "lowest_price_4d": 5.603435516357422,
+    "token": "DOT-USD",
+    "highest_volume_prices": [
+        {
+            "date": "2024-07-22 00:00",
+            "price": 6.107129096984863,
+            "volume": 364398964
+        },
+        {
+            "date": "2024-07-18 00:00",
+            "price": 6.093573093414307,
+            "volume": 183527904
+        },
+        {
+            "date": "2024-07-19 00:00",
+            "price": 6.346135139465332,
+            "volume": 168630679
+        },
+        {
+            "date": "2024-07-23 00:00",
+            "price": 5.918869972229004,
+            "volume": 168141654
+        }
+    ],
+    "price_1d_ago": null,
+    "price_2d_ago": 5.82026481628418,
+    "price_3d_ago": 6.0917792320251465,
+    "price_4d_ago": 6.12521505355835
+}

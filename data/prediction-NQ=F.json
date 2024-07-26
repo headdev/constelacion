@@ -1,27 +1,22 @@
 {
-    "current_price": 19949.75,
-    "predicted_price": 18507.609375,
-    "prediction_date": "2024-07-24",
+    "current_price": 19269.5,
+    "predicted_price": 18628.240234375,
+    "prediction_date": "2024-07-26",
     "prediction_days": 1,
-    "mae": 1385.1568561422414,
+    "mae": 1363.0057246767242,
     "trade_direction": "SHORT \ud83d\udcc9",
-    "entry_price": 20684.5,
-    "stop_loss": 21305.035,
-    "target_price_1": 18507.609375,
-    "target_price_2": 19654.0,
-    "highest_price_4d": 20684.5,
-    "lowest_price_4d": 19654.0,
+    "entry_price": 20162.5,
+    "stop_loss": 20767.375,
+    "target_price_1": 18628.240234375,
+    "target_price_2": 19168.75,
+    "highest_price_4d": 20162.5,
+    "lowest_price_4d": 19168.75,
     "token": "NQ=F",
     "highest_volume_prices": [
         {
             "date": "2024-07-18 00:00",
             "price": 19899.25,
             "volume": 964287
-        },
-        {
-            "date": "2024-07-17 00:00",
-            "price": 19997.5,
-            "volume": 854323
         },
         {
             "date": "2024-07-19 00:00",
@@ -31,11 +26,16 @@
         {
             "date": "2024-07-22 00:00",
             "price": 20001.0,
-            "volume": 774109
+            "volume": 657854
+        },
+        {
+            "date": "2024-07-23 00:00",
+            "price": 19925.0,
+            "volume": 601990
         }
     ],
-    "price_1d_ago": 20044.75,
-    "price_2d_ago": null,
-    "price_3d_ago": null,
-    "price_4d_ago": 19979.75
+    "price_1d_ago": 19883.0,
+    "price_2d_ago": 20084.75,
+    "price_3d_ago": 20044.75,
+    "price_4d_ago": null
 }

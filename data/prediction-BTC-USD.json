@@ -1,16 +1,16 @@
 {
-    "current_price": 65914.984375,
-    "predicted_price": 67812.84375,
-    "prediction_date": "2024-07-24",
+    "current_price": 64069.95703125,
+    "predicted_price": 64197.62109375,
+    "prediction_date": "2024-07-26",
     "prediction_days": 1,
-    "mae": 1502.044921875,
+    "mae": 1246.45654296875,
     "trade_direction": "LONG \ud83d\udcc8",
-    "entry_price": 62487.96875,
-    "stop_loss": 60613.3296875,
-    "target_price_1": 67812.84375,
+    "entry_price": 63246.1640625,
+    "stop_loss": 61348.779140624996,
+    "target_price_1": 64197.62109375,
     "target_price_2": 68480.0625,
     "highest_price_4d": 68480.0625,
-    "lowest_price_4d": 62487.96875,
+    "lowest_price_4d": 63246.1640625,
     "token": "BTC-USD",
     "highest_volume_prices": [
         {
@@ -19,23 +19,23 @@
             "volume": 42649109453
         },
         {
-            "date": "2024-07-16 00:00",
-            "price": 65097.1484375,
-            "volume": 41617346768
-        },
-        {
             "date": "2024-07-19 00:00",
             "price": 66710.15625,
             "volume": 37003855410
         },
         {
             "date": "2024-07-23 00:00",
-            "price": 65914.984375,
-            "volume": 35133652992
+            "price": 65927.671875,
+            "volume": 35605668666
+        },
+        {
+            "date": "2024-07-25 00:00",
+            "price": 64069.95703125,
+            "volume": 33192050688
         }
     ],
-    "price_1d_ago": 66611.296875,
-    "price_2d_ago": 65842.296875,
-    "price_3d_ago": 66299.6171875,
-    "price_4d_ago": 63329.34375
+    "price_1d_ago": null,
+    "price_2d_ago": 65484.4609375,
+    "price_3d_ago": 66611.296875,
+    "price_4d_ago": 65842.296875
 }

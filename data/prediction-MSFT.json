@@ -1,0 +1,41 @@
+{
+    "current_price": 428.8999938964844,
+    "predicted_price": 416.7900085449219,
+    "prediction_date": "2024-07-25",
+    "prediction_days": 1,
+    "mae": 22.848616579745677,
+    "trade_direction": "SHORT \ud83d\udcc9",
+    "entry_price": 448.3900146484375,
+    "stop_loss": 461.84171508789063,
+    "target_price_1": 416.7900085449219,
+    "target_price_2": 427.5899963378906,
+    "highest_price_4d": 448.3900146484375,
+    "lowest_price_4d": 427.5899963378906,
+    "token": "MSFT",
+    "highest_volume_prices": [
+        {
+            "date": "2024-07-24 00:00",
+            "price": 428.8999938964844,
+            "volume": 26761700
+        },
+        {
+            "date": "2024-07-19 00:00",
+            "price": 437.1099853515625,
+            "volume": 20940400
+        },
+        {
+            "date": "2024-07-18 00:00",
+            "price": 440.3699951171875,
+            "volume": 20794800
+        },
+        {
+            "date": "2024-07-22 00:00",
+            "price": 442.94000244140625,
+            "volume": 15808800
+        }
+    ],
+    "price_1d_ago": 441.4800109863281,
+    "price_2d_ago": 448.3900146484375,
+    "price_3d_ago": 444.6000061035156,
+    "price_4d_ago": null
+}

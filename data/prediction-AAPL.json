@@ -1,16 +1,16 @@
 {
-    "current_price": 225.00999450683594,
-    "predicted_price": 188.2899932861328,
-    "prediction_date": "2024-07-24",
+    "current_price": 218.5399932861328,
+    "predicted_price": 186.05999755859375,
+    "prediction_date": "2024-07-25",
     "prediction_days": 1,
-    "mae": 16.847571031102593,
+    "mae": 18.246392591944282,
     "trade_direction": "SHORT \ud83d\udcc9",
-    "entry_price": 236.27000427246094,
-    "stop_loss": 243.35810440063477,
-    "target_price_1": 188.2899932861328,
-    "target_price_2": 222.27000427246094,
-    "highest_price_4d": 236.27000427246094,
-    "lowest_price_4d": 222.27000427246094,
+    "entry_price": 230.44000244140625,
+    "stop_loss": 237.35320251464844,
+    "target_price_1": 186.05999755859375,
+    "target_price_2": 217.1300048828125,
+    "highest_price_4d": 230.44000244140625,
+    "lowest_price_4d": 217.1300048828125,
     "token": "AAPL",
     "highest_volume_prices": [
         {
@@ -19,9 +19,9 @@
             "volume": 66034600
         },
         {
-            "date": "2024-07-17 00:00",
-            "price": 228.8800048828125,
-            "volume": 57345900
+            "date": "2024-07-24 00:00",
+            "price": 218.5399932861328,
+            "volume": 61630300
         },
         {
             "date": "2024-07-19 00:00",
@@ -34,8 +34,8 @@
             "volume": 48201800
         }
     ],
-    "price_1d_ago": 227.77999877929688,
-    "price_2d_ago": null,
-    "price_3d_ago": null,
-    "price_4d_ago": 226.8000030517578
+    "price_1d_ago": 224.8000030517578,
+    "price_2d_ago": 226.94000244140625,
+    "price_3d_ago": 227.77999877929688,
+    "price_4d_ago": null
 }

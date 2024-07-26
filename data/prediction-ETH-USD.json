@@ -1,0 +1,41 @@
+{
+    "current_price": 3160.213623046875,
+    "predicted_price": 3219.889892578125,
+    "prediction_date": "2024-07-26",
+    "prediction_days": 1,
+    "mae": 94.79412286931819,
+    "trade_direction": "LONG \ud83d\udcc8",
+    "entry_price": 3157.621337890625,
+    "stop_loss": 3062.8926977539063,
+    "target_price_1": 3219.889892578125,
+    "target_price_2": 3560.075439453125,
+    "highest_price_4d": 3560.075439453125,
+    "lowest_price_4d": 3157.621337890625,
+    "token": "ETH-USD",
+    "highest_volume_prices": [
+        {
+            "date": "2024-07-23 00:00",
+            "price": 3481.995849609375,
+            "volume": 24468405650
+        },
+        {
+            "date": "2024-07-25 00:00",
+            "price": 3160.213623046875,
+            "volume": 20257351680
+        },
+        {
+            "date": "2024-07-22 00:00",
+            "price": 3440.419921875,
+            "volume": 18723199034
+        },
+        {
+            "date": "2024-07-19 00:00",
+            "price": 3505.73486328125,
+            "volume": 17705629736
+        }
+    ],
+    "price_1d_ago": null,
+    "price_2d_ago": 3395.4208984375,
+    "price_3d_ago": 3425.795654296875,
+    "price_4d_ago": 3415.44384765625
+}

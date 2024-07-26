@@ -1,18 +1,41 @@
 {
-    "current_price": 29.114482879638672,
-    "predicted_price": 66805.171875,
-    "prediction_date": "2024-07-21",
+    "current_price": 27.43369483947754,
+    "predicted_price": 26.989999771118164,
+    "prediction_date": "2024-07-26",
     "prediction_days": 1,
-    "trade_direction": "LONG",
-    "entry_price": 26.536853790283203,
-    "stop_loss": 25.740748176574705,
-    "target_price_1": 66805.171875,
-    "target_price_2": 29.207748413085938,
-    "highest_price_4d": 29.207748413085938,
-    "lowest_price_4d": 26.536853790283203,
+    "mae": 1.8809518814086914,
+    "trade_direction": "SHORT \ud83d\udcc9",
+    "entry_price": 32.947845458984375,
+    "stop_loss": 33.93628082275391,
+    "target_price_1": 26.989999771118164,
+    "target_price_2": 26.357887268066406,
+    "highest_price_4d": 32.947845458984375,
+    "lowest_price_4d": 26.357887268066406,
     "token": "AVAX-USD",
-    "price_1d_ago": 26.707508087158203,
-    "price_2d_ago": 26.711889266967773,
-    "price_3d_ago": 27.253253936767578,
-    "price_4d_ago": 26.536853790283203
+    "highest_volume_prices": [
+        {
+            "date": "2024-07-21 00:00",
+            "price": 32.60565948486328,
+            "volume": 758424815
+        },
+        {
+            "date": "2024-07-22 00:00",
+            "price": 31.858896255493164,
+            "volume": 499061368
+        },
+        {
+            "date": "2024-07-23 00:00",
+            "price": 29.841068267822266,
+            "volume": 474364433
+        },
+        {
+            "date": "2024-07-24 00:00",
+            "price": 28.39635467529297,
+            "volume": 447694427
+        }
+    ],
+    "price_1d_ago": 30.490442276000977,
+    "price_2d_ago": 32.60590744018555,
+    "price_3d_ago": 32.889923095703125,
+    "price_4d_ago": 32.947845458984375
 }
