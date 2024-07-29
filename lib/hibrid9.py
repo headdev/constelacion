@@ -450,7 +450,7 @@ Rango de Precios (últimos 7 días):
 Precios con Mayor Volumen (últimos 7 días):
 {chr(10).join([f"- {price['date']}: ${price['price']:.2f} (Volumen: {price['volume']:,.0f})" for price in prediction_data['highest_volume_prices']])}
 
-Generado el {current_date} a las {current_time}
+
 """
 
         print("Preparando envío a Telegram...")
