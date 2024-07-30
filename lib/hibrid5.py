@@ -21,6 +21,10 @@ from telegram.error import TelegramError
 import mplfinance as mpf
 import argparse  # Añadida esta línea
 
+# Definir la zona horaria de Colombia
+colombia_tz = pytz.timezone('America/Bogota')
+
+
 warnings.filterwarnings("ignore")
 
 # Argparse setup
@@ -41,7 +45,7 @@ def feature_engineering(data, SPY, predictions=np.array([None]))->pd.core.frame.
 
     if predictions.any() == True:
         data = yf.download(SYMBOL, start="2009-11-30")
-        SPY = yf.download("SPY", start="2001-11-30")["Close"]
+        SPY = yf.download("SPY", start="2001-11-30")["Close"] 
         data = features(data, SPY)
         data["Predictions"] = predictions
         data["Close"] = data["Close_y"]
@@ -363,7 +367,7 @@ def main():
 
         print(f"Niveles calculados: Entry=${entry:.2f}, TP1=${tp1:.2f}, TP2=${tp2:.2f}, SL=${stop_loss:.2f}")
 
-        now = datetime.now(pytz.UTC)
+        now = datetime.now(colombia_tz)
         specific_prices = {}
         for days in range(1, 5):
             price_key = f"price_{days}d_ago"
@@ -424,8 +428,9 @@ def main():
             print("No se pudo crear el gráfico debido a la falta de datos históricos suficientes.")
             print(f"Datos históricos disponibles: {len(historical_prices)} períodos")
 
-        current_date = datetime.now().strftime('%Y-%m-%d')
-        current_time = datetime.now().strftime('%H:%M')
+        current_date = datetime.now(colombia_tz).strftime('%Y-%m-%d')
+        current_time = datetime.now(colombia_tz).strftime('%H:%M')
+
         
         message = f"""
 *{symbol} Prediction* para {current_date}
@@ -450,7 +455,7 @@ Rango de Precios (últimos 7 días):
 Precios con Mayor Volumen (últimos 7 días):
 {chr(10).join([f"- {price['date']}: ${price['price']:.2f} (Volumen: {price['volume']:,.0f})" for price in prediction_data['highest_volume_prices']])}
 
-
+Generado el {current_date} a las {current_time}
 """
 
         print("Preparando envío a Telegram...")
