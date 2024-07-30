@@ -1,0 +1,41 @@
+{
+    "current_price": 40539.9296875,
+    "predicted_price": 39844.578125,
+    "prediction_date": "2024-07-30",
+    "prediction_days": 1,
+    "mae": 380.58232421875,
+    "trade_direction": "SHORT \ud83d\udcc9",
+    "entry_price": 40753.828125,
+    "stop_loss": 41976.44296875,
+    "target_price_1": 39844.578125,
+    "target_price_2": 39807.44921875,
+    "highest_price_4d": 40753.828125,
+    "lowest_price_4d": 39807.44921875,
+    "token": "^DJI",
+    "highest_volume_prices": [
+        {
+            "date": "2024-07-24 00:00",
+            "price": 39853.87109375,
+            "volume": 394210000
+        },
+        {
+            "date": "2024-07-25 00:00",
+            "price": 39935.0703125,
+            "volume": 375790000
+        },
+        {
+            "date": "2024-07-26 00:00",
+            "price": 40589.33984375,
+            "volume": 332070000
+        },
+        {
+            "date": "2024-07-23 00:00",
+            "price": 40358.08984375,
+            "volume": 287390000
+        }
+    ],
+    "price_1d_ago": 40682.48828125,
+    "price_2d_ago": null,
+    "price_3d_ago": null,
+    "price_4d_ago": 40753.828125
+}
