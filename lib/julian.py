@@ -432,27 +432,27 @@ def main():
         message = f"""
 *{symbol} Prediction* para {current_date}
 
-Predicción para los próximos {prediction_days} días:
+Prediction for the next {prediction_days} days:
 
-- Precio Actual: ${prediction_data['current_price']:.2f}
-- Precio Predicho: ${prediction_data['predicted_price']:.2f}
-- Dirección del Trade: {prediction_data['trade_direction']}
-- MAE (Error Medio Absoluto): {prediction_data['mae']:.2f}
+- Current Price: ${prediction_data['current_price']:.2f}
+- Predicted Price: ${prediction_data['predicted_price']:.2f}
+- Trade Direction: {prediction_data['trade_direction']}
+- MAE (Mean Absolute Error): {prediction_data['mae']:.2f}
 
-Niveles de Trading:
-- Precio de Entrada: ${prediction_data['entry_price']:.2f}
+Trading Levels:
+- Entry Price: ${prediction_data['entry_price']:.2f}
 - Stop Loss: ${prediction_data['stop_loss']:.2f}
-- Objetivo 1 (TP1): ${prediction_data['target_price_1']:.2f}
-- Objetivo 2 (TP2): ${prediction_data['target_price_2']:.2f}
+- Target 1 (TP1): ${prediction_data['target_price_1']:.2f}
+- Target 2 (TP2): ${prediction_data['target_price_2']:.2f}
 
-Rango de Precios (últimos 7 días):
-- Precio Más Alto: ${prediction_data['highest_price_4d']:.2f}
-- Precio Más Bajo: ${prediction_data['lowest_price_4d']:.2f}
+Price Range (last 7 days):
+- Highest Price: ${prediction_data['highest_price_4d']:.2f}
+- Lowest Price: ${prediction_data['lowest_price_4d']:.2f}
 
-Precios con Mayor Volumen (últimos 7 días):
-{chr(10).join([f"- {price['date']}: ${price['price']:.2f} (Volumen: {price['volume']:,.0f})" for price in prediction_data['highest_volume_prices']])}
+Prices with Highest Volume (last 7 days):
+{chr(10).join([f"- {price['date']}: ${price['price']:.2f} (Volume: {price['volume']:,.0f})" for price in prediction_data['highest_volume_prices']])}
 
-Generado el {current_date} a las {current_time}
+Generated on {current_date} at {current_time}
 """
 
         print("Preparando envío a Telegram...")
