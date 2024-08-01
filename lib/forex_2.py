@@ -32,9 +32,9 @@ args = parser.parse_args()
 SYMBOL = args.symbol.upper()
 INTERVAL = '1h'
 
-def get_historical_data(symbol, interval='1h', days=180):
+def get_historical_data(symbol, interval='1h', hours=168):  # 168 horas = 7 días
     end_date = pd.Timestamp.now(tz=pytz.UTC)
-    start_date = end_date - pd.Timedelta(days=days)
+    start_date = end_date - pd.Timedelta(hours=hours)
     try:
         data = yf.download(symbol, start=start_date, end=end_date, interval=interval)
         if data.empty:
@@ -195,24 +195,28 @@ def determine_trade_direction(current_price, predicted_price):
     return "LONG 📈" if predicted_price > current_price else "SHORT 📉"
 
 def find_entry_and_targets(historical_prices, current_price, predicted_price, trade_direction):
-    if historical_prices.empty:
-        print("Warning: Empty historical data. Using current and predicted prices.")
+    if historical_prices.empty or len(historical_prices) < 24:
+        print("Warning: Insufficient historical data. Using current and predicted prices.")
         highest_price = max(current_price, predicted_price)
         lowest_price = min(current_price, predicted_price)
+        entry = lowest_price if "LONG" in trade_direction else highest_price
     else:
         highest_price = historical_prices['High'].max()
         lowest_price = historical_prices['Low'].min()
-    
+        entry = lowest_price if "LONG" in trade_direction else highest_price
+
     if "SHORT" in trade_direction:
-        entry = highest_price
-        tp1 = min(predicted_price, current_price)
-        tp2 = lowest_price
-        stop_loss = entry * 1.001  # Adjusted for forex
-    else:  # LONG
-        entry = lowest_price
-        tp1 = max(predicted_price, current_price)
-        tp2 = highest_price
-        stop_loss = entry * 0.999  # Adjusted for forex
+        tp1 = min(predicted_price, current_price * 0.9995)  # 0.05% below current price
+        tp2 = min(predicted_price, current_price * 0.9990)  # 0.1% below current price
+        stop_loss = current_price * 1.0015  # 0.15% above current price
+    elif "LONG" in trade_direction:
+        tp1 = max(predicted_price, current_price * 1.0005)  # 0.05% above current price
+        tp2 = max(predicted_price, current_price * 1.0010)  # 0.1% above current price
+        stop_loss = entry * 0.9985  # 0.15% below entry price
+    else:  # NEUTRAL
+        tp1 = predicted_price
+        tp2 = predicted_price
+        stop_loss = current_price * 0.9985 if predicted_price >= current_price else current_price * 1.0015
     
     return entry, tp1, tp2, stop_loss
 
@@ -309,12 +313,12 @@ def send_to_telegram(message, image_path):
 def predictPrice(interval='1h'):
     global forex_prices, DXY, y_val, y_test, pred_test_xgb, mae, WINDOW, PREDICTION_SCOPE
 
-    PERCENTAGE = 0.8  # Cambiado de 0.995 a 0.8 para tener suficientes datos de validación
-    WINDOW = 24 * 3  # 3 days of hourly data
-    PREDICTION_SCOPE = 1  # Predicting 1 hour ahead
+    PERCENTAGE = 0.8
+    WINDOW = 12  # 12 horas de datos
+    PREDICTION_SCOPE = 1  # Predecir 1 hora adelante
 
-    forex_prices = get_historical_data(SYMBOL, interval=INTERVAL, days=90)
-    DXY = get_historical_data("DX-Y.NYB", interval=interval, days=90)
+    forex_prices = get_historical_data(SYMBOL, interval=INTERVAL, hours=24)  # Últimas 24 horas
+    DXY = get_historical_data("DX-Y.NYB", interval=interval, hours=24)
     
     if forex_prices is None or DXY is None:
         raise ValueError("Unable to fetch required data")
@@ -335,7 +339,7 @@ def predictPrice(interval='1h'):
     X_train, y_train = windowing(train_data, WINDOW, PREDICTION_SCOPE)
 
     # Dividir los datos de entrenamiento en entrenamiento y validación
-    val_size = int(len(X_train) * 0.2)
+    val_size = max(1, int(len(X_train) * 0.2))
     X_val, y_val = X_train[-val_size:], y_train[-val_size:]
     X_train, y_train = X_train[:-val_size], y_train[:-val_size]
 
@@ -348,18 +352,24 @@ def predictPrice(interval='1h'):
     X_test, y_test = windowing(test_data, WINDOW, PREDICTION_SCOPE)
     print(f"Shape of X_test: {X_test.shape}")
 
-    pred_test_xgb = xgb_model.predict(X_test.reshape(X_test.shape[0], -1))
-    print(f"Shape of pred_test_xgb: {pred_test_xgb.shape}")
-    print(f"Last predicted value: {pred_test_xgb[-1]}")
+    if X_test.shape[0] > 0:
+        pred_test_xgb = xgb_model.predict(X_test.reshape(X_test.shape[0], -1))
+        print(f"Shape of pred_test_xgb: {pred_test_xgb.shape}")
+        print(f"Last predicted value: {pred_test_xgb[-1]}")
 
-    predicted_price, prediction_date, prediction_hours = plotting(y_val, y_test, pred_test_xgb[-1], mae, WINDOW, PREDICTION_SCOPE)
-    
+        predicted_price, prediction_date, prediction_hours = plotting(y_val, y_test, pred_test_xgb[-1], mae, WINDOW, PREDICTION_SCOPE)
+    else:
+        print("Warning: Not enough test data for prediction")
+        predicted_price = forex_prices['Close'].iloc[-1]
+        prediction_date = forex_prices.index[-1] + pd.Timedelta(hours=1)
+        prediction_hours = 1
+
     print(f"Predicted price: {predicted_price}")
     print(f"Prediction date: {prediction_date}")
     print(f"Prediction hours: {prediction_hours}")
 
     return predicted_price, prediction_date, prediction_hours, mae
-
+   
 def main():
     symbol = args.symbol.upper()
     interval = '1h'
@@ -380,20 +390,22 @@ def main():
         trade_direction = determine_trade_direction(current_price, predicted_price)
         print(f"Trade direction: {trade_direction}")
         
-        historical_prices = get_historical_data(symbol, interval=interval)
+        historical_prices = get_historical_data(symbol, interval=interval, hours=24)
         print("Historical data obtained:")
         print(historical_prices)
 
         highest_volume_prices = get_highest_volume_prices(historical_prices, n=4)
+        print("Highest volume prices:")
+        print(highest_volume_prices)
 
-        if historical_prices.empty:
-            print("Warning: Could not obtain historical data. Using alternative values.")
-            highest_price_7d = max(current_price, predicted_price)
-            lowest_price_7d = min(current_price, predicted_price)
+        if historical_prices.empty or len(historical_prices) < 24:
+            print("Warning: Insufficient historical data. Using alternative values.")
+            highest_price_24h = max(current_price, predicted_price)
+            lowest_price_24h = min(current_price, predicted_price)
             entry, tp1, tp2, stop_loss = current_price, predicted_price, predicted_price, current_price * (1.001 if "SHORT" in trade_direction else 0.999)
         else:
-            highest_price_7d = historical_prices['High'].max()
-            lowest_price_7d = historical_prices['Low'].min()
+            highest_price_24h = historical_prices['High'].max()
+            lowest_price_24h = historical_prices['Low'].min()
             entry, tp1, tp2, stop_loss = find_entry_and_targets(historical_prices, current_price, predicted_price, trade_direction)
 
         print(f"Calculated levels: Entry=${entry:.4f}, TP1=${tp1:.4f}, TP2=${tp2:.4f}, SL=${stop_loss:.4f}")
@@ -414,7 +426,7 @@ def main():
                         specific_prices[price_key] = float(hour_prices['Low'].min())
                 else:
                     specific_prices[price_key] = None
-        
+
         prediction_data = {
             "current_price": float(current_price),
             "predicted_price": float(predicted_price),
@@ -426,8 +438,8 @@ def main():
             "stop_loss": float(stop_loss),
             "target_price_1": float(tp1),
             "target_price_2": float(tp2),
-            "highest_price_7d": float(highest_price_7d),
-            "lowest_price_7d": float(lowest_price_7d),
+            "highest_price_24h": float(highest_price_24h),
+            "lowest_price_24h": float(lowest_price_24h),
             "token": symbol,
             "highest_volume_prices": highest_volume_prices,
             **specific_prices
@@ -443,14 +455,10 @@ def main():
         
         print(f"Values for chart: entry={entry}, tp1={tp1}, tp2={tp2}, stop_loss={stop_loss}, trade_direction={trade_direction}")
         
-        print("Verifying historical data:")
-        print(historical_prices)
-        print(f"Shape of historical data: {historical_prices.shape}")
-        
         chart_path = None
         if not historical_prices.empty and len(historical_prices) >= 2:
             print("Attempting to create chart...")
-            chart_path = create_chart(symbol, hours=168, entry=entry, tp1=tp1, tp2=tp2, stop_loss=stop_loss, trade_direction=trade_direction, interval=interval)
+            chart_path = create_chart(symbol, hours=24, entry=entry, tp1=tp1, tp2=tp2, stop_loss=stop_loss, trade_direction=trade_direction, interval=interval)
             if chart_path:
                 print(f"Chart created successfully at: {chart_path}")
             else:
@@ -478,11 +486,11 @@ Trading Levels:
 - Target 1 (TP1): ${prediction_data['target_price_1']:.4f}
 - Target 2 (TP2): ${prediction_data['target_price_2']:.4f}
 
-Price Range (last 7 days):
-- Highest Price: ${prediction_data['highest_price_7d']:.4f}
-- Lowest Price: ${prediction_data['lowest_price_7d']:.4f}
+Price Range (last 24 hours):
+- Highest Price: ${prediction_data['highest_price_24h']:.4f}
+- Lowest Price: ${prediction_data['lowest_price_24h']:.4f}
 
-Prices with Highest Volume (last 7 days):
+Prices with Highest Volume (last 24 hours):
 {chr(10).join([f"- {price['date']}: ${price['price']:.4f} (Volume: {price['volume']:,.0f})" for price in prediction_data['highest_volume_prices']])}
 
 Generated on {current_date} at {current_time}
@@ -496,22 +504,7 @@ Generated on {current_date} at {current_time}
             print(f"Could not find chart file at {chart_path if chart_path else 'any location'}. Sending message only.")
             send_to_telegram(message, None)
 
-        for hours in range(0, 25, 6):
-            specific_date = now - pd.Timedelta(hours=hours)
-            if not historical_prices.empty:
-                print(f"\nData from {hours} hours ago ({specific_date}):")
-                print(historical_prices.loc[historical_prices.index.floor('H') == specific_date.floor('H')])
-            else:
-                print(f"\nNo data available for {hours} hours ago ({specific_date})")
-
-        print(f"\nDebug Information:")
-        print(f"Current Price: {current_price}")
-        print(f"Predicted Price: {predicted_price}")
-        print(f"Trade Direction: {trade_direction}")
-        print(f"Entry Price: {entry}")
-        print(f"Stop Loss: {stop_loss}")
-        print(f"Target Price 1: {tp1}")
-        print(f"Target Price 2: {tp2}")
+        print("Process completed successfully.")
 
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -519,4 +512,4 @@ Generated on {current_date} at {current_time}
         print(traceback.format_exc())
 
 if __name__ == "__main__":
-    main()
+    main()  
