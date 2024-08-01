@@ -1,0 +1,41 @@
+{
+    "current_price": 1.0835410356521606,
+    "predicted_price": 1.0835410356521606,
+    "prediction_date": "2024-08-01 04:41",
+    "prediction_hours": 1,
+    "mae": 0.0,
+    "trade_direction": "SHORT \ud83d\udcc9",
+    "entry_price": 1.087311029434204,
+    "stop_loss": 1.0883983404636381,
+    "target_price_1": 1.0835410356521606,
+    "target_price_2": 1.080263614654541,
+    "highest_price_7d": 1.087311029434204,
+    "lowest_price_7d": 1.080263614654541,
+    "token": "EURUSD=X",
+    "highest_volume_prices": [
+        {
+            "date": "2024-07-26 00:00",
+            "price": 1.0856584310531616,
+            "volume": 0
+        },
+        {
+            "date": "2024-07-30 16:00",
+            "price": 1.0816657543182373,
+            "volume": 0
+        },
+        {
+            "date": "2024-07-31 02:00",
+            "price": 1.0829542875289917,
+            "volume": 0
+        },
+        {
+            "date": "2024-07-31 01:00",
+            "price": 1.0824854373931885,
+            "volume": 0
+        }
+    ],
+    "price_1h_ago": 1.0836584568023682,
+    "price_7h_ago": 1.0831888914108276,
+    "price_13h_ago": 1.0830715894699097,
+    "price_19h_ago": 1.0829542875289917
+}
