@@ -1,41 +1,41 @@
 {
-    "current_price": 1.0833063125610352,
-    "predicted_price": 1.0833063125610352,
-    "prediction_date": "2024-08-01 06:00",
-    "prediction_hours": 1,
-    "mae": 4.3511390686035156e-05,
-    "trade_direction": "SHORT \ud83d\udcc9",
-    "entry_price": 1.0851871967315674,
-    "stop_loss": 1.0849312720298767,
-    "target_price_1": 1.0827646594047546,
-    "target_price_2": 1.0822230062484741,
-    "highest_price_24h": 1.0851871967315674,
-    "lowest_price_24h": 1.0807305574417114,
+    "current_price": 1.0793308019638062,
+    "predicted_price": 1.090000033378601,
+    "prediction_date": "2024-08-02",
+    "prediction_days": 1,
+    "mae": 0.011221084594726562,
+    "trade_direction": "LONG \ud83d\udcc8",
+    "entry_price": 1.0781670808792114,
+    "stop_loss": 1.045822068452835,
+    "target_price_1": 1.090000033378601,
+    "target_price_2": 1.0871928930282593,
+    "highest_price_4d": 1.0871928930282593,
+    "lowest_price_4d": 1.0781670808792114,
     "token": "EURUSD=X",
     "highest_volume_prices": [
         {
-            "date": "2024-07-31 05:00",
-            "price": 1.0828369855880737,
+            "date": "2024-07-25 00:00",
+            "price": 1.0839520692825317,
             "volume": 0
         },
         {
-            "date": "2024-07-31 18:00",
-            "price": 1.0829542875289917,
+            "date": "2024-07-26 00:00",
+            "price": 1.0851283073425293,
             "volume": 0
         },
         {
-            "date": "2024-08-01 04:00",
-            "price": 1.0829542875289917,
+            "date": "2024-07-29 00:00",
+            "price": 1.0853756666183472,
             "volume": 0
         },
         {
-            "date": "2024-08-01 03:00",
-            "price": 1.0835410356521606,
+            "date": "2024-07-30 00:00",
+            "price": 1.081946611404419,
             "volume": 0
         }
     ],
-    "price_1h_ago": 1.0837758779525757,
-    "price_7h_ago": 1.0834236145019531,
-    "price_13h_ago": 1.0824854373931885,
-    "price_19h_ago": 1.0837758779525757
+    "price_1d_ago": 1.0808707475662231,
+    "price_2d_ago": 1.0799952745437622,
+    "price_3d_ago": 1.0803102254867554,
+    "price_4d_ago": null
 }
