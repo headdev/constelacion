@@ -1,41 +1,41 @@
 {
-    "current_price": 62573.96484375,
-    "predicted_price": 62107.078125,
-    "prediction_date": "2024-08-02",
+    "current_price": 55559.80078125,
+    "predicted_price": 56239.48828125,
+    "prediction_date": "2024-08-07",
     "prediction_days": 1,
-    "mae": 1539.1185661764705,
-    "trade_direction": "SHORT \ud83d\udcc9",
-    "entry_price": 69987.5390625,
-    "stop_loss": 72087.165234375,
-    "target_price_1": 62107.078125,
-    "target_price_2": 62528.01953125,
-    "highest_price_4d": 69987.5390625,
-    "lowest_price_4d": 62528.01953125,
+    "mae": 1622.3977481617646,
+    "trade_direction": "LONG \ud83d\udcc8",
+    "entry_price": 55559.80078125,
+    "stop_loss": 55004.2027734375,
+    "target_price_1": 56239.48828125,
+    "target_price_2": 56919.17578125,
+    "highest_price_7d": 66987.671875,
+    "lowest_price_7d": 54004.31640625,
     "token": "BTC-USD",
     "highest_volume_prices": [
         {
-            "date": "2024-07-29 00:00",
-            "price": 66819.9140625,
-            "volume": 40780682628
+            "date": "2024-08-06 00:00",
+            "price": 55559.80078125,
+            "volume": 90491060224
+        },
+        {
+            "date": "2024-08-02 00:00",
+            "price": 61415.06640625,
+            "volume": 43060875727
         },
         {
             "date": "2024-08-01 00:00",
-            "price": 62573.96484375,
-            "volume": 38396923904
+            "price": 65357.5,
+            "volume": 40975554494
         },
         {
-            "date": "2024-07-25 00:00",
-            "price": 65777.2265625,
-            "volume": 38315761670
-        },
-        {
-            "date": "2024-07-27 00:00",
-            "price": 67813.3359375,
-            "volume": 34691905492
+            "date": "2024-08-04 00:00",
+            "price": 58116.9765625,
+            "volume": 31758917219
         }
     ],
-    "price_1d_ago": 66810.2109375,
-    "price_2d_ago": 66987.671875,
-    "price_3d_ago": 69987.5390625,
-    "price_4d_ago": 68301.8515625
+    "price_1d_ago": null,
+    "price_2d_ago": 57210.8046875,
+    "price_3d_ago": 59836.52734375,
+    "price_4d_ago": 61184.89453125
 }
