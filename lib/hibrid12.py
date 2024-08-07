@@ -1,5 +1,3 @@
-#Archivo timeframe de 1h 
-
 import sys
 sys.path.insert(0, './lib')
 
@@ -34,7 +32,7 @@ args = parser.parse_args()
 
 # Global variables
 SYMBOL = args.symbol.upper()
-INTERVAL = '1h'  # Changed to 1h
+INTERVAL = '90m'  # Changed to 90m
 
 def feature_engineering(data, SPY, predictions=np.array([None]))->pd.core.frame.DataFrame:
     assert type(data) == pd.core.frame.DataFrame, "data must be a dataframe"
@@ -165,7 +163,7 @@ def get_current_price(symbol):
     todays_data = ticker.history(period='1d')
     return todays_data['Close'][0]
 
-def get_historical_prices(symbol, hours=42, interval='1h'):
+def get_historical_prices(symbol, hours=42, interval='90m'):
     end_date = datetime.now(pytz.UTC)
     start_date = end_date - timedelta(hours=hours)
     data = yf.download(symbol, start=start_date, end=end_date, interval=interval)
@@ -245,7 +243,7 @@ def find_entry_and_targets(historical_prices, current_price, predicted_price, tr
     
     return entry, tp1, tp2, stop_loss
 
-def create_chart(symbol, hours=42, entry=None, tp1=None, tp2=None, stop_loss=None, trade_direction=None, interval='1h'):
+def create_chart(symbol, hours=42, entry=None, tp1=None, tp2=None, stop_loss=None, trade_direction=None, interval='90m'):
     print(f"Iniciando creación del gráfico para {symbol} con intervalo {interval}")
     end_date = datetime.now(pytz.UTC)
     start_date = end_date - timedelta(hours=hours)
@@ -335,7 +333,7 @@ def send_to_telegram(message, image_path):
     print(f"Iniciando envío a Telegram. Ruta de imagen: {image_path}")
     asyncio.run(send_to_telegram_async(message, image_path))
 
-def predictPrice(interval='1h'):
+def predictPrice(interval='90m'):
     global stock_prices, SPY, y_val, y_test, pred_test_xgb, mae, WINDOW, PREDICTION_SCOPE
 
     PERCENTAGE = 0.8  # Cambiado de 0.995 a 0.8
@@ -393,7 +391,7 @@ def predictPrice(interval='1h'):
 
 def main():
     symbol = args.symbol.upper()
-    interval = '1h'
+    interval = '90m'
     
     try:
         print(f"Iniciando predicción para {symbol} con intervalo {interval}")
@@ -493,7 +491,7 @@ def main():
         current_date = datetime.now(colombia_tz).strftime('%Y-%m-%d')
         current_time = datetime.now(colombia_tz).strftime('%H:%M')
         
-        
+        90m
 *{symbol} Prediction* para {current_date}
 
 Predicción para las próximas {prediction_hours} horas:
